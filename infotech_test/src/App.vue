@@ -1,41 +1,118 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view />
-  </div>
+  <v-app>
+    <v-main>
+      <router-view />
+    </v-main>
+  </v-app>
 </template>
 
-<style lang="scss">
-@import "uikit/src/scss/variables.scss";
-@import "uikit/src/scss/mixins.scss";
-@mixin hook-card() {
-  color: #000;
+<script>
+export default {
+  name: "App",
+
+  data: () => ({
+    //
+  }),
+};
+</script>
+
+<style scoped>
+/* karla-regular - latin */
+@font-face {
+  font-family: "Karla";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/karla-v23-latin-regular.eot"); /* IE9 Compat Modes */
+  src: local(""),
+    url("../fonts/karla-v23-latin-regular.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("../fonts/karla-v23-latin-regular.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("../fonts/karla-v23-latin-regular.woff")
+      format("woff"),
+    /* Modern Browsers */ url("../fonts/karla-v23-latin-regular.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */ url("../fonts/karla-v23-latin-regular.svg#Karla")
+      format("svg"); /* Legacy iOS */
 }
-
-// 4. Import UIkit.
-@import "uikit/src/scss/uikit.scss";
-
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+/* karla-500 - latin */
+@font-face {
+  font-family: "Karla";
+  font-style: normal;
+  font-weight: 500;
+  src: url("../fonts/karla-v23-latin-500.eot"); /* IE9 Compat Modes */
+  src: local(""),
+    url("../fonts/karla-v23-latin-500.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("../fonts/karla-v23-latin-500.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("../fonts/karla-v23-latin-500.woff")
+      format("woff"),
+    /* Modern Browsers */ url("../fonts/karla-v23-latin-500.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */ url("../fonts/karla-v23-latin-500.svg#Karla")
+      format("svg"); /* Legacy iOS */
 }
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+/* karla-600 - latin */
+@font-face {
+  font-family: "Karla";
+  font-style: normal;
+  font-weight: 600;
+  src: url("../fonts/karla-v23-latin-600.eot"); /* IE9 Compat Modes */
+  src: local(""),
+    url("../fonts/karla-v23-latin-600.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("../fonts/karla-v23-latin-600.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("../fonts/karla-v23-latin-600.woff")
+      format("woff"),
+    /* Modern Browsers */ url("../fonts/karla-v23-latin-600.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */ url("../fonts/karla-v23-latin-600.svg#Karla")
+      format("svg"); /* Legacy iOS */
+}
+/* karla-700 - latin */
+@font-face {
+  font-family: "Karla";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../fonts/karla-v23-latin-700.eot"); /* IE9 Compat Modes */
+  src: local(""),
+    url("../fonts/karla-v23-latin-700.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("../fonts/karla-v23-latin-700.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("../fonts/karla-v23-latin-700.woff")
+      format("woff"),
+    /* Modern Browsers */ url("../fonts/karla-v23-latin-700.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */ url("../fonts/karla-v23-latin-700.svg#Karla")
+      format("svg"); /* Legacy iOS */
+}
+/* inter-regular - latin */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/inter-v12-latin-regular.eot"); /* IE9 Compat Modes */
+  src: local(""),
+    url("../fonts/inter-v12-latin-regular.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("../fonts/inter-v12-latin-regular.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("../fonts/inter-v12-latin-regular.woff")
+      format("woff"),
+    /* Modern Browsers */ url("../fonts/inter-v12-latin-regular.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */ url("../fonts/inter-v12-latin-regular.svg#Inter")
+      format("svg"); /* Legacy iOS */
+}
+/* inter-500 - latin */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  src: url("../fonts/inter-v12-latin-500.eot"); /* IE9 Compat Modes */
+  src: local(""),
+    url("../fonts/inter-v12-latin-500.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("../fonts/inter-v12-latin-500.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("../fonts/inter-v12-latin-500.woff")
+      format("woff"),
+    /* Modern Browsers */ url("../fonts/inter-v12-latin-500.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */ url("../fonts/inter-v12-latin-500.svg#Inter")
+      format("svg"); /* Legacy iOS */
 }
 </style>
