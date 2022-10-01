@@ -19,7 +19,13 @@
       </v-list-item>
 
       <v-list dense>
-        <v-list-item link>
+        <v-list-item
+          class="px-2 sidebar__item__inactive"
+          active-class="sidebar__item__active"
+          color="white"
+          link
+          to="/TodoList"
+        >
           <v-list-item-content>
             <v-list-item-title class="d-flex align-center">
               <v-icon class="mr-1" color="#1d2939" size="24"
@@ -116,6 +122,31 @@ export default {};
   letter-spacing: -0.03em;
 
   color: #1d2939;
+}
+
+.sidebar__item__active {
+  box-sizing: border-box;
+
+  padding: 12px 8px 12px 6px;
+  gap: 10px;
+
+  width: 272px;
+  height: 48px;
+
+  background: #f2f4f7;
+  border-radius: 8px;
+}
+
+.sidebar__item__inactive {
+  box-sizing: border-box;
+
+  padding: 12px 8px 12px 6px;
+  gap: 10px;
+
+  width: 272px;
+  height: 48px;
+
+  border-radius: 8px;
 }
 
 .sidebar__item__text {

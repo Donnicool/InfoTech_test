@@ -1,7 +1,7 @@
 <template>
   <div style="height: 100%">
     <div class="main d-flex justify-center">
-      <TodoListComponent />
+      <router-view></router-view>
     </div>
     <TodoSidebar />
   </div>
@@ -9,9 +9,9 @@
 
 <script>
 import TodoSidebar from "@/views/TodoSidebar.vue";
-import TodoListComponent from "@/views/TodoListComponent.vue";
+//import TodoListComponent from "@/views/TodoListComponent.vue";
 export default {
-  components: { TodoSidebar, TodoListComponent },
+  components: { TodoSidebar },
 };
 </script>
 
