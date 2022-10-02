@@ -6,8 +6,28 @@ const state = {
 };
 
 const getters = {
-  GET_TODO_LIST: (state) => {
+  GET_ALL_TODO_LIST: (state) => {
     return state.todoList;
+  },
+  GET_TODO_LIST: (state) => {
+    let unCompletedTodoList = [];
+    state.todoList.forEach((todo) => {
+      if (!todo.completed) {
+        unCompletedTodoList.push(todo);
+      }
+    });
+    unCompletedTodoList.sort((a, b) => a.number.todo - b.number.todo);
+    return unCompletedTodoList;
+  },
+  GET_DONE_LIST: (state) => {
+    let CompletedTodoList = [];
+    state.todoList.forEach((todo) => {
+      if (todo.completed) {
+        CompletedTodoList.push(todo);
+      }
+    });
+    CompletedTodoList.sort((a, b) => a.number.done - b.number.done);
+    return CompletedTodoList;
   },
 };
 
@@ -19,10 +39,6 @@ const mutations = {
         state.todoList.push(new TaskModel(todo));
       });
     }
-  },
-
-  ADD_TASK: (state, newTask) => {
-    state.todoList.push(new TaskModel({ newTask }));
   },
 };
 

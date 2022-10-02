@@ -34,14 +34,14 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="#1d2939" text @click="taskEditDialogShow = false">
-            Cancel
-          </v-btn>
           <v-btn
             color="#1d2939"
             text
             @click="
               if (isNewTask) {
+                $el.ownerDocument.defaultView.console.log(currentTask);
+                currentTask.number.todo = GET_TODO_LIST.length + 1;
+                currentTask.number.done = 0;
                 postTask(currentTask);
               } else {
                 editTask(currentTask);
@@ -50,7 +50,7 @@
               taskEditDialogShow = false;
             "
           >
-            Save
+            Ok
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -70,7 +70,7 @@ export default {
     isNewTask: false,
   }),
   computed: {
-    ...mapGetters(["GET_TODO_LIST"]),
+    ...mapGetters(["GET_ALL_TODO_LIST", "GET_TODO_LIST"]),
   },
   components: { TodoSidebar },
   methods: {

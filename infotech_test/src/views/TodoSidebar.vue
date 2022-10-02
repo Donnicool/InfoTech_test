@@ -34,7 +34,7 @@
               <v-spacer></v-spacer>
               <div class="rectangle2 d-flex justify-center align-center">
                 <span class="tasks__quantity__text">{{
-                  GET_TODO_LIST.length
+                  GET_ALL_TODO_LIST.length
                 }}</span>
               </div>
             </v-list-item-title>
@@ -63,12 +63,15 @@ import TaskModel from "@/models/TaskModel";
 export default {
   props: ["currentTask", "taskEditDialogShow", "isNewTask"],
   computed: {
-    ...mapGetters(["GET_TODO_LIST"]),
+    ...mapGetters(["GET_ALL_TODO_LIST"]),
   },
   methods: {
     createNewTask: function () {
       console.log(1111);
-      this.$emit("update:currentTask", new TaskModel({ author: "Me" }));
+      this.$emit(
+        "update:currentTask",
+        new TaskModel({ author: "Me", number: { todo: 0, done: 0 } })
+      );
       this.$emit("update:taskEditDialogShow", true);
       this.$emit("update:isNewTask", true);
       console.log(this.isNewTask);
