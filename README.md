@@ -9,7 +9,7 @@
     1. ```npm install -g @vue/cli```
     2. ```npm install```
     3. ```npm install --global yarn```
-3. Запустить сервер ```npm run serve```
+3. Запустить сервер командой ```npm run serve```
 ## Настройка API
 В качестве тестового сервера был использован [json-server](https://github.com/typicode/json-server). Чтобы настроить, его необходимо выполнить:
 1. ```npm init```
