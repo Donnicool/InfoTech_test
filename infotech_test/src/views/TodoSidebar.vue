@@ -33,7 +33,9 @@
               ><span class="sidebar__item__text">Tasks</span>
               <v-spacer></v-spacer>
               <div class="rectangle2 d-flex justify-center align-center">
-                <span class="tasks__quantity__text">2</span>
+                <span class="tasks__quantity__text">{{
+                  GET_TODO_LIST.length
+                }}</span>
               </div>
             </v-list-item-title>
           </v-list-item-content>
@@ -45,7 +47,7 @@
           <button class="sidebar__bottom__button">
             <v-icon>mdi-cog-outline</v-icon><span>Settings</span>
           </button>
-          <button plain small class="sidebar__bottom__button">
+          <button class="sidebar__bottom__button">
             <v-icon>mdi-plus-circle-outline</v-icon><span>New task</span>
           </button>
         </div>
@@ -55,14 +57,17 @@
 </template>
 
 <script>
-export default {};
+import { mapGetters } from "vuex";
+
+export default {
+  computed: {
+    ...mapGetters(["GET_TODO_LIST"]),
+  },
+};
 </script>
 
 <style lang="scss">
 .sidebar {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
   padding: 24px 24px 16px;
   gap: 32px;
 
@@ -89,10 +94,6 @@ export default {};
 
 .sidebar__subtitle {
   box-sizing: border-box;
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
   margin: 0 auto;
   padding: 0px;
   gap: 8px;
@@ -110,9 +111,6 @@ export default {};
 }
 
 .sidebar__title__text {
-  width: 69px;
-  height: 19px;
-
   font-family: "Karla";
   font-style: normal;
   font-weight: 700;
@@ -163,11 +161,6 @@ export default {};
 
 .sidebar__bottom__button {
   box-sizing: border-box;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
   padding: 12px 8px 12px 6px;
   gap: 10px;
 
@@ -190,8 +183,6 @@ export default {};
   width: 20px;
   height: 20px;
 
-  /* Gray / 800 */
-
   background: #1d2939;
   border-radius: 6px;
 }
@@ -204,8 +195,6 @@ export default {};
   line-height: 15px;
 
   letter-spacing: -0.0075em;
-
-  /* White */
 
   color: #ffffff;
 }

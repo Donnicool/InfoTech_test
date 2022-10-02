@@ -6,34 +6,57 @@
           <span class="todo__title__text text-uppercase">To do</span>
         </div>
 
-        <v-card elevation="1" class="mb-6"
-          ><v-card-title class="todo__card__title__text mb-2"
-            >delectus aut autem</v-card-title
-          ><v-card-subtitle class="todo__card__author__text"
-            >Created by:
-            <span style="font-weight: 700">1</span></v-card-subtitle
-          >
-        </v-card>
+        <div v-for="item in GET_TODO_LIST" :key="item.id">
+          <v-card v-if="!item.completed" elevation="1" class="mb-6"
+            ><v-card-title class="todo__card__title__text mb-2">{{
+              item.title
+            }}</v-card-title
+            ><v-card-subtitle class="todo__card__author__text"
+              >Created by:
+              <span style="font-weight: 700">{{
+                item.author
+              }}</span></v-card-subtitle
+            >
+          </v-card>
+        </div>
       </v-col>
       <v-col cols="6">
         <div class="mb-8">
           <span class="todo__title__text text-uppercase">Done</span>
         </div>
-        <v-card elevation="1" class="mb-6"
-          ><v-card-title class="todo__card__title__text mb-2"
-            >odit optio omnis qui sunt</v-card-title
-          ><v-card-subtitle class="todo__card__author__text"
-            >Created by:
-            <span style="font-weight: 700">4</span></v-card-subtitle
-          >
-        </v-card>
+        <div v-for="item in GET_TODO_LIST" :key="item.id">
+          <v-card v-if="item.completed" elevation="1" class="mb-6"
+            ><v-card-title class="todo__card__title__text mb-2">{{
+              item.title
+            }}</v-card-title
+            ><v-card-subtitle class="todo__card__author__text"
+              >Created by:
+              <span style="font-weight: 700">{{
+                item.author
+              }}</span></v-card-subtitle
+            >
+          </v-card>
+        </div>
       </v-col>
     </v-row>
   </div>
 </template>
 
 <script>
-export default {};
+import { mapGetters } from "vuex";
+
+export default {
+  data: () => ({}),
+  components: {},
+  computed: {
+    ...mapGetters(["GET_TODO_LIST"]),
+  },
+  methods: {
+    chck: function () {
+      console.log(this.GET_WORKS);
+    },
+  },
+};
 </script>
 
 <style lang="scss">
