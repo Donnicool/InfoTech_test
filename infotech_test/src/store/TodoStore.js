@@ -1,32 +1,8 @@
 import TaskModel from "../models/TaskModel";
+import TodoAPI from "@/services/TodoAPI";
 
 const state = {
-  todoList: [
-    {
-      author: 1,
-      id: 1,
-      title: "delectus aut autem",
-      completed: false,
-    },
-    {
-      author: 1,
-      id: 2,
-      title: "quis ut nam facilis et officia qui",
-      completed: false,
-    },
-    {
-      author: 1,
-      id: 3,
-      title: "fugiat veniam minus",
-      completed: false,
-    },
-    {
-      author: 1,
-      id: 4,
-      title: "et porro tempora",
-      completed: true,
-    },
-  ],
+  todoList: [],
 };
 
 const getters = {
@@ -40,7 +16,7 @@ const mutations = {
     state.todoList = [];
     if (payload) {
       payload.forEach((todo) => {
-        state.TKRSList.push(new TaskModel(todo));
+        state.todoList.push(new TaskModel(todo));
       });
     }
   },
@@ -51,21 +27,31 @@ const mutations = {
 };
 
 const actions = {
-  //   loadTodoList: (context) => {
-  //     return TodoAPI.getTodoList().then((response) => {
-  //       context.commit("LOAD_TODO_LIST", response.data);
-  //       console.log(response.data);
-  //     });
-  //   },
-  //   postTask: (context, newTask) => {
-  //     console.log(newTask);
-  //     return TodoAPI.postTask(new TaskModel({ newTask }));
-  //   },
-  //   deleteTask: (context, id) => {
-  //     return TodoAPI.deleteTask(id).then(() => {
-  //       context.dispatch("LOAD_TODO_LIST");
-  //     });
-  //   },
+  loadTodoList: (context) => {
+    return TodoAPI.getTodoList().then((response) => {
+      context.commit("LOAD_TODO_LIST", response.data);
+      console.log(response.data);
+    });
+  },
+  postTask: (context, payload) => {
+    console.log(payload);
+    return TodoAPI.postTask(payload).then((response) => {
+      context.dispatch("loadTodoList");
+      console.log(response.data);
+    });
+  },
+  editTask: (context, payload) => {
+    console.log(payload);
+    return TodoAPI.patchTask(payload).then((response) => {
+      context.dispatch("loadTodoList");
+      console.log(response.data);
+    });
+  },
+  deleteTask: (context, id) => {
+    return TodoAPI.deleteTask(id).then(() => {
+      context.dispatch("loadTodoList");
+    });
+  },
 };
 
 export default {

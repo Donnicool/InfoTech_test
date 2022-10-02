@@ -1,22 +1,93 @@
 <template>
   <div style="height: 100%">
     <div class="main d-flex justify-center">
-      <router-view></router-view>
+      <router-view
+        :currentTask.sync="currentTask"
+        :taskEditDialogShow.sync="taskEditDialogShow"
+        :isNewTask.sync="isNewTask"
+      ></router-view>
     </div>
-    <TodoSidebar />
+    <TodoSidebar
+      :currentTask.sync="currentTask"
+      :taskEditDialogShow.sync="taskEditDialogShow"
+      :isNewTask.sync="isNewTask"
+    />
+    <v-dialog v-model="taskEditDialogShow" width="800">
+      <v-card>
+        <v-card-title>
+          <span class="d-block text-h5"
+            ><span
+              v-if="isNewTask"
+              class="sidebar__title__text"
+              style="font-size: 24px"
+              >Add new task</span
+            >
+            <span v-else class="sidebar__title__text" style="font-size: 24px"
+              >Edit task</span
+            >
+          </span>
+        </v-card-title>
+
+        <v-card-text>
+          <v-text-field v-model="currentTask.title"></v-text-field>
+        </v-card-text>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="#1d2939" text @click="taskEditDialogShow = false">
+            Cancel
+          </v-btn>
+          <v-btn
+            color="#1d2939"
+            text
+            @click="
+              if (isNewTask) {
+                postTask(currentTask);
+              } else {
+                editTask(currentTask);
+              }
+
+              taskEditDialogShow = false;
+            "
+          >
+            Save
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
 <script>
 import TodoSidebar from "@/views/TodoSidebar.vue";
+import { mapGetters, mapActions } from "vuex";
+import TaskModel from "@/models/TaskModel";
 //import TodoListComponent from "@/views/TodoListComponent.vue";
 export default {
+  data: () => ({
+    currentTask: new TaskModel({}),
+    taskEditDialogShow: false,
+    isNewTask: false,
+  }),
+  computed: {
+    ...mapGetters(["GET_TODO_LIST"]),
+  },
   components: { TodoSidebar },
+  methods: {
+    ...mapActions(["loadTodoList", "postTask", "editTask"]),
+    chck: function () {
+      console.log(this.currentTask);
+    },
+  },
+  beforeMount() {
+    this.loadTodoList();
+  },
 };
 </script>
 
 <style lang="scss">
 .main {
+  box-sizing: border-box;
   position: relative;
   width: 100%;
   height: 100%;

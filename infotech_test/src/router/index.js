@@ -15,6 +15,7 @@ const routes = [
         path: "/TodoList",
         name: "TodoList",
         component: TodoListComponent,
+        props: true,
       },
     ],
   },

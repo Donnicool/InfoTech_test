@@ -24,7 +24,7 @@
           active-class="sidebar__item__active"
           color="white"
           link
-          to="/TodoList"
+          :to="'/TodoList'"
         >
           <v-list-item-content>
             <v-list-item-title class="d-flex align-center">
@@ -47,7 +47,7 @@
           <button class="sidebar__bottom__button">
             <v-icon>mdi-cog-outline</v-icon><span>Settings</span>
           </button>
-          <button class="sidebar__bottom__button">
+          <button class="sidebar__bottom__button" @click="createNewTask()">
             <v-icon>mdi-plus-circle-outline</v-icon><span>New task</span>
           </button>
         </div>
@@ -58,10 +58,21 @@
 
 <script>
 import { mapGetters } from "vuex";
+import TaskModel from "@/models/TaskModel";
 
 export default {
+  props: ["currentTask", "taskEditDialogShow", "isNewTask"],
   computed: {
     ...mapGetters(["GET_TODO_LIST"]),
+  },
+  methods: {
+    createNewTask: function () {
+      console.log(1111);
+      this.$emit("update:currentTask", new TaskModel({ author: "Me" }));
+      this.$emit("update:taskEditDialogShow", true);
+      this.$emit("update:isNewTask", true);
+      console.log(this.isNewTask);
+    },
   },
 };
 </script>
@@ -125,10 +136,6 @@ export default {
 .sidebar__item__active {
   box-sizing: border-box;
 
-  padding: 12px 8px 12px 6px;
-  gap: 10px;
-
-  width: 272px;
   height: 48px;
 
   background: #f2f4f7;
@@ -138,10 +145,6 @@ export default {
 .sidebar__item__inactive {
   box-sizing: border-box;
 
-  padding: 12px 8px 12px 6px;
-  gap: 10px;
-
-  width: 272px;
   height: 48px;
 
   border-radius: 8px;
