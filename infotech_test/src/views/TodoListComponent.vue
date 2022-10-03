@@ -46,7 +46,9 @@
                     >mdi-check-bold</v-icon
                   >
                   <v-spacer></v-spacer>
-                  <v-icon color="red darken-4" @click="deleteTaskFunc(item)"
+                  <v-icon
+                    color="red darken-4"
+                    @click="deleteTaskFunc(item, GET_TODO_LIST)"
                     >mdi-close</v-icon
                   >
                 </div>
@@ -99,7 +101,9 @@
                     >mdi-arrow-u-left-top-bold</v-icon
                   >
                   <v-spacer></v-spacer>
-                  <v-icon color="red darken-4" @click="deleteTaskFunc(item)"
+                  <v-icon
+                    color="red darken-4"
+                    @click="deleteTaskFunc(item, GET_DONE_LIST)"
                     >mdi-close</v-icon
                   >
                 </div>
